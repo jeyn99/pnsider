@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
-import Login from '../views/login.vue'
+import Analytics from '@/components/Analytics.vue'
+import Login from '@/views/login.vue'
 
 Vue.use(VueRouter)
 
@@ -16,11 +16,11 @@ const routes = [
     name: 'about',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  // {
-  //   path: '/admin/dashboard',
-  //   name: 'adminDashboard',
-  //   component: 
-  // }
+  {
+    path: '/admin/analytics',
+    name: 'Analytics',
+    component: Analytics
+  }
 
 ]
 
