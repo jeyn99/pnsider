@@ -10,7 +10,7 @@
             <i>TotalStudent: </i><h3>{{ question }}</h3>
             <v-divider class="mx-4" inset vertical></v-divider>
             <div class="my-2">
-              <v-btn small color="error">See Students</v-btn>
+              <v-btn small class="button">See Students</v-btn>
             </div>
           </v-toolbar>
         </template>
@@ -53,8 +53,8 @@ export default {
 
 <style>
   .table {
-  margin-left: 25%;
-  width: 50%;
+  margin-left: 10%;
+  max-width: 80%;
   background-color: #ffffff;
   padding: 20px;
   text-align: center;
