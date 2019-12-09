@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Analytics from '@/components/Analytics.vue'
 import Students from '@/components/studentManagement.vue'
 import Login from '@/views/login.vue'
+// import { isNullOrUndefined } from "util";
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/admin/student/management',
     name: 'Students',
     component: Students
+  },
+  {
+    path: '/student/form',
+    name: 'Form',
+    component: () =>  import(/* webpackChunkName: "about" */ '../views/StudentForm.vue')
   }
 
 ]

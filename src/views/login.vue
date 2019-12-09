@@ -49,15 +49,24 @@ export default {
     login() {
       let url = "http://localhost:8081/login";
       let data = { username: this.username, password: this.password };
-      console.log("Here")
-      axios.post(url, data)
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err, "err ni siya")
-      })
-      this.$router.push(`/about`);
+      axios
+        .post(url, data)
+        .then(res => {
+          console.log(res.data.user);
+          localStorage.setItem("token", res.data.token);
+          if (
+            res.data.user === "admin" ||
+            res.data.user === "educator"
+          ) {
+            this.$router.push(`/about`);
+          } else {
+            console.log("Students?");
+            this.$router.push(`/student/form`);
+          }
+        })
+        .catch(err => {
+          alert(err);
+        });
     }
   }
 };
