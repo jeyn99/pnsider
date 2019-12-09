@@ -1,13 +1,11 @@
 <template>
-  <div id="table">
+  <div id="table" class="spacer">
     <v-data-table :headers="headers" :items="score" hide-default-footer class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat color="white">
             <v-toolbar-title>
               <i>{{questionLabel}}</i>
             </v-toolbar-title>
-            <v-divider class="mx-4" inset vertical></v-divider>
-            <i>TotalStudent: </i><h3>{{ question }}</h3>
             <v-divider class="mx-4" inset vertical></v-divider>
             <div class="my-2">
               <v-btn small class="button">See Students</v-btn>
@@ -18,12 +16,14 @@
           <v-icon small @click="seeStudentWhoAnswered(item)">mdi-account-multiple</v-icon>
         </template>
       </v-data-table>
-      <v-spacer></v-spacer>
+      <hr>
   </div>
 </template>
 
 
 <script>
+// import axios from 'axios';
+
 export default {
   props: {
     score: {
@@ -36,17 +36,24 @@ export default {
   data() {
     return {
       headers: [
+        // { text: "Number of Answers", value: "description" },
         {
           text: "Category",
           align: "left",
-          value: "num"
+          value: "_id"
         },
         { text: "Number of Answers", value: "answers" },
         { text: "Action", value: "action", sortable: false }
       ],
       answers: [],
-      total: null,
+      // total: null,
     };
+  },
+  methods: {
+    seeStudentWhoAnswered(item) {
+      console.log(item)
+      // axios.post()
+    }
   }
 }
 </script>
@@ -58,5 +65,8 @@ export default {
   background-color: #ffffff;
   padding: 20px;
   text-align: center;
+}
+.spacer{
+  margin: 10%;
 }
 </style>

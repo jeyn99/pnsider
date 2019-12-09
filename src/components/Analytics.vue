@@ -1,15 +1,15 @@
 <template>
   <div class="table">
     <div v-for="(ans , index) in answers" :key="index">
-      <Props :score="ans" :questionLabel="questions[index]"/>
+      <Props :score="ans" :questionLabel="questions[index]" />
     </div>
-    <!-- <Props :score="answers2" :question="2"/> -->
+    <!-- <Props :score="answers" :question="2"/> -->
   </div>
 </template>
 
 <script>
 import Props from "./Analyticsprops.vue";
-// import axios from "axios"
+import axios from "axios";
 export default {
   name: "Analytics",
   data() {
@@ -28,55 +28,40 @@ export default {
         "What academic skill that you want to improve?",
         "What challenges have you encounter during class?"
       ],
-      answers: []
-      //   answers2: [{ num: "Jisoo", num: "Baby", num: "Kalabaw" }],
-      //   answers3: []
+      answers: [],
+      total: null
     };
   },
   components: {
     Props
   },
-  mounted() {
-    for (let i = 0; i < 12; i++) {
-      this.answers.push([
-        { num: "Jane" },
-        { num: "Repollo" },
-        { num: "Self" },
-        { num: "Jisoo" },
-        { num: "Baby" },
-        { num: "Kalabaw" }
-      ]);
-    }
-  }
-
   // mounted() {
-  //   var index = 1;
-  //   while (index <= 3) {
-  //     axios
-  //       .post("http://localhost:5000/staff/summary/" + index)
-  //       .then(res => {
-  //         // for (let i= 0; i < res.data.length ; i++) {
-  //         //   console.log(index, "here")
-  //         //   this.answers1.push(res.data[i])
-  //         // }
-  //         this.answers.push(res.data)
-  //         index++;
-  //         // console.log(this.answers[index], "answers")
-  //       })
-  //       .catch(err => {
-  //         console.log("Ni error", err);
-  //         index = 3;
-  //       });
-
+  //   for (let i = 0; i < 12; i++) {
+  //     this.answers.push([
+  //       { num: "Jane" },
+  //       { num: "Repollo" },
+  //       { num: "Self" },
+  //       { num: "Jisoo" },
+  //       { num: "Baby" },
+  //       { num: "Kalabaw" }
+  //     ]);
   //   }
   // }
-
-  // data:
-  //     [{ num: "Jane" },
-  //     { num: "Repollo" },
-  //     { num: "Self" },
-  //     { num: "Jisoo" },
-  //     { num: "Baby" },
-  //     { num: "Kalabaw" }]
+  mounted() {
+    var i = 1;
+    for (i; i < 13; i++) {
+      axios
+        .post("http://localhost:8081/admin/report/summary/" + i )
+        .then(res => {
+          // console.log(res.data.data);
+          this.answers.push(res.data.data);
+          // this.total = res.data.data[0].length;
+        })
+        .catch(err => {
+          console.log("Ni error", err);
+        });
+        // console.log(this.answers, "Hello") 
+    }
+  }
 };
 </script>
