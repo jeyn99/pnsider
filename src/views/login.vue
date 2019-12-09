@@ -35,7 +35,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "Login",
@@ -47,13 +47,21 @@ export default {
   },
   methods: {
     login() {
-      alert(this.password);
+      let url = "http://localhost:8081/login";
+      let data = { username: this.username, password: this.password };
+      console.log("Here")
+      axios.post(url, data)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err, "err ni siya")
+      })
       this.$router.push(`/about`);
     }
   }
 };
 </script>
 
-<style> 
-
+<style>
 </style>
