@@ -29,38 +29,24 @@ export default {
         "What challenges have you encounter during class?"
       ],
       answers: [],
-      total: null
+      total: []
     };
   },
   components: {
     Props
   },
-  // mounted() {
-  //   for (let i = 0; i < 12; i++) {
-  //     this.answers.push([
-  //       { num: "Jane" },
-  //       { num: "Repollo" },
-  //       { num: "Self" },
-  //       { num: "Jisoo" },
-  //       { num: "Baby" },
-  //       { num: "Kalabaw" }
-  //     ]);
-  //   }
-  // }
   mounted() {
     var i = 1;
     for (i; i < 13; i++) {
       axios
         .post("http://localhost:8081/admin/report/summary/" + i )
         .then(res => {
-          // console.log(res.data.data);
+          this.total.push(res.data.data.length)
           this.answers.push(res.data.data);
-          // this.total = res.data.data[0].length;
         })
         .catch(err => {
           console.log("Ni error", err);
         });
-        // console.log(this.answers, "Hello") 
     }
   }
 };
